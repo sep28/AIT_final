@@ -2,116 +2,127 @@ The content below is an example project proposal / requirements document. Replac
 
 (___TODO__: your project name_)
 
-# Shoppy Shoperson 
+# NBA myGM Lite
 
 ## Overview
 
-(___TODO__: a brief one or two paragraph, high-level description of your project_)
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
+Have you ever wanted to manage and run your own NBA team? Well now you can, using NBA myGM!
 
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
-
+NBA myGM is a web app that will allow users to keep track of players on their team. Users can register and login. Once they're logged in, they can create or view their NBA Team. Users can add Players to their team and fill in each player's information (height, weight, position, age, skills). Users can also choose to remove a player from their team. 
 
 ## Data Model
 
-(___TODO__: a description of your application's data and their relationships to each other_) 
 
-The application will store Users, Lists and Items
+The application will store Users, Teams, and Players
 
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
+* users can have one Team (via reference) //User and Team are synonymous
+* each Team has basic info (location, mascot, colors, coach)
+* each Team can have multiple Players (by embedding)
+* each Player has basic info (height, weight, age, position) and a list of attributes
 
-(___TODO__: sample documents_)
 
 An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
+  username: "NewYorkBlackCats", //up to user if their usename includes team info
   hash: // a password hash,
-  lists: // an array of references to List documents
+  location: // Team location,
+  mascot: //Team mascot,
+  color1: //Team color 1,
+  color2: //Team color2,
+  coach: //Team coach,
+  roster: // an array of references to Player documents
 }
 ```
 
-An Example List with Embedded Items:
+An Example Player:
 
 ```javascript
 {
   user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
+  name: "John Doe",
+  height: "6'4",
+  weight: "205",
+  age: "34",
+  position: "guard",
+  attributes: ["Shooter", "Hustle Player"],
   createdAt: // timestamp
 }
 ```
 
 
-## [Link to Commented First Draft Schema](db.js) 
+## ![Link to Commented First Draft Schema](db.js) 
 
-(___TODO__: create a first draft of your Schemas in db.js and link to it_)
 
 ## Wireframes
 
-(___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
+/ - page for Users to log in or new User Registration
 
-/list/create - page for creating a new shopping list
+![home](documentation/home.png)
 
-![list create](documentation/list-create.png)
+/team/create - page for creating a new Team
 
-/list - page for showing all shopping lists
+![team create](documentation/team-create.png)
 
-![list](documentation/list.png)
+/team - page for showing user Team info and Players on that Team
 
-/list/slug - page for showing specific shopping list
+![team](documentation/team.png)
 
-![list](documentation/list-slug.png)
+/team/add - page for adding a player to the Team
+
+![team](documentation/team-add.png)
+
+/team/remove - page for removing a player from the Team
+
+![team](documentation/team-remove.png)
 
 ## Site map
 
-(___TODO__: draw out a site map that shows how pages are related to each other_)
 
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
+/ - home page which LINKS to /team upon succesful login for returning user or LINKS to /team-create for new user
+
+
+/team - team page which LINKS to /team-add if User decides to add new Player to Team or LINKS to /team-remove if user wishes to remove a Player from Team
+
+
+/team-add - page for adding a new Player to Team. LINKS to /team if user wishes to return to Team page or LINKS to /team-remove if user wishes to remove a Player from Team
+
+
+/team-remove - page for removing a Player from Team. LINKS to /team if user wishes to return to Team page or LINKS to /team-add if user wishes to add a new Player to Team
+
 
 ## User Stories or Use Cases
 
-(___TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://www.mongodb.com/download-center?jmp=docs&_ga=1.47552679.1838903181.1489282706#previous)_)
 
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+3. as a user, I can create one Team
+4. as a user, I can create Players to add to the Team
+5. as a user, I can remove a Player from the Team
+6. as a user, I can see a list of all the Players on my Team with details about each Player
 
 ## Research Topics
 
-(___TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
 
-* (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+* (3 points) Perform client side form validation using a JavaScript library
+    * I will have JS code to ensure that all form content is valid and does not cause any errors
+    * This is important because I will have forms on almost every page of my web app
+    * The form content is also used to build my Teams and Players and store within DB
+* (3 points) Unit testing with Mocha
+    * Will be testing my project with Mocha to ensure all errors are caught and handled prior to deploy
+    * This will help ensure that my code runs as planned, ensuring each action (add/remove) is performed properly to make sure my db is maintained properly
+* (2 points) Use a CSS Preprocessor
+    * I will learn and use Sass as my CSS Preprocessor 
+    * I will do this because my HTML/CSS is slacking and I believe Sass could help me with my CSS
+    * Sass will allow me to organize my CSS to my HTML file and use variables for Team Color displays
 
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
+8 points total out of 8 required points 
 
+## ![Link to Initial Main Project File](app.js) 
 
-## [Link to Initial Main Project File](app.js) 
-
-(___TODO__: create a skeleton Express application with a package.json, app.js, views folder, etc. ... and link to your initial app.js_)
 
 ## Annotations / References Used
 
-(___TODO__: list any tutorials/references/etc. that you've based your code off of_)
-
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
 

@@ -1,0 +1,29 @@
+{
+  "name": "sep28-final-project",
+  "version": "1.0.0",
+  "description": "The content below is an example project proposal / requirements document. Replace the text below the lines marked \"__TODO__\" with details specific to your project. Remove the \"TODO\" lines.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyu-csci-ua-0480-001-fall-2019/sep28-final-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nyu-csci-ua-0480-001-fall-2019/sep28-final-project/issues"
+  },
+  "homepage": "https://github.com/nyu-csci-ua-0480-001-fall-2019/sep28-final-project#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.6.0",
+    "eslint-plugin-mocha": "^6.2.1",
+    "mocha": "^6.2.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.0.6"
+  }
+}
