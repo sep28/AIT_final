@@ -20,6 +20,7 @@ app.set('view engine', 'hbs');
 
 
 app.use(express.urlencoded( { extended: false }));
+app.use(express.static(publicPath)); 
 
 app.use(function(req, res, next) {
 	console.log("Method: " + req.method + "\n");
