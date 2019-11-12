@@ -3,6 +3,17 @@ const URLSlugs = require('mongoose-url-slugs');
 
 mongoose.set('bufferCommands', false);
 
+
+const Player = new mongoose.Schema({
+  team: String, 
+  name: String,
+  height: String,
+  weight: String,
+  age: String,
+  position: String,
+  attributes: [String],
+});
+
 const Team = new mongoose.Schema({
   //username: String,
   //hash:  a password hash,
@@ -11,18 +22,9 @@ const Team = new mongoose.Schema({
   color1: String,
   color2: String,
   coach: String,
-  //roster: [Player]
+  roster: [Player]
 });
 
-const Player = new mongoose.Schema({
-  user: Team, 
-  name: String,
-  height: String,
-  weight: String,
-  age: String,
-  position: String,
-  attributes: [String],
-});
 
 Team.plugin(URLSlugs('location mascot'));
 

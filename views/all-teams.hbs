@@ -3,7 +3,10 @@
 
 <ul>
 {{#each teams}}
-	<li>{{this.location}} {{this.mascot}}</li>
+	<li> <strong> {{this.location}} {{this.mascot}} </strong> </li>
+	{{#each roster}}
+	<li>{{this.name}} {{this.position}}</li>
+	{{/each}}
 	<br>
 {{/each}}
 </ul>

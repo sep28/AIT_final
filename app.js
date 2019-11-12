@@ -43,11 +43,11 @@ app.post('/', function(req, res) {
 	res.redirect('/');
 });
 
-app.get("/team/create", function(req, res) {
-	res.render('team-create');
+app.get("/create-team", function(req, res) {
+	res.render('create-team');
 });
 
-app.post('/team/create', function(req, res) {
+app.post('/create-team', function(req, res) {
 	console.log(req.body);
 	new Team({
 		location: req.body.location,
@@ -57,7 +57,7 @@ app.post('/team/create', function(req, res) {
   		coach: req.body.coach
 	}).save(function(err, team, count) {
 		if (err) {
-			console.log("could not save new team");
+			console.log("could not save new team\n");
 			res.redirect('/');
 		}
 		else {
@@ -70,8 +70,8 @@ app.post('/team/create', function(req, res) {
 
 app.get('/allteams', function(req,res) {
 	Team.find(function(err, teams, count) {
-		if(err) {
-			console.log("could not find any teams");
+		if(err || (!teams)) {
+			console.log("could not find any teams\n");
 			res.redirect("/");
 		}
 		else {
@@ -81,18 +81,72 @@ app.get('/allteams', function(req,res) {
 	});
 });
 
+app.get('/add-player', function(req,res) {
+	res.render('add-player');
+});
+
+app.post('/add-player', function(req, res) {
+	console.log(req.body);
+	let teamName = req.body.team.toLowerCase();
+	let tempName = teamName.split(" ");
+	let teamSlug = tempName.join("-");
+
+	Team.findOne({slug: teamSlug}, function(err, team) {
+		if(err) {
+			console.log("could not find that team\n");
+			res.redirect("/");
+		}
+		else {
+			const newPlayer = new Player({
+				team: req.body.team, 
+  				name: req.body.name,
+  				height: req.body.height,
+  				weight: req.body.weight,
+  				age: req.body.age,
+  				position: req.body.position,
+  				skills: req.body.skills
+			});
+			newPlayer.save(function(err, player) {
+				if (err) {
+					console.log("Could not save that new player to our DB\n");
+				}
+				else {
+					console.log("Saved new player to our DB\n");
+				}
+			});
+			team.roster.push(newPlayer);
+			team.save(function(err, team) {
+				if (err) {
+					console.log("Could not save team after adding new Player\n");
+				}
+				else {
+					console.log("Saved team with new player\n");
+					console.log(team);
+				}
+			});
+			res.redirect('/allteams')
+		}
+	});
+});
+
+/*
 app.get('/team', function(req, res) {
 	Team.findOne({location: "Austin" }, function(err, team, count) {
 		if(err) {
-			console.log("could not find your team");
+			console.log("could not find your team\n");
 		}
-		else {
+		else if (team) {
 			console.log(team);
 			res.render('team-page', {"teamName": team.location});
+		}
+		else {
+			console.log("could not find your team\n");
 		}
 	});
 	//res.render('team-page', {"teamName": "NY"});
 });
+
+*/
 
 
 app.listen(process.env.PORT || 3000);
