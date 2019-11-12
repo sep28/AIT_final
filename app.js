@@ -14,7 +14,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const publicPath = path.resolve(__dirname, "public");
-const PORT = 17884;
+//const PORT = 17884;
 
 app.set('view engine', 'hbs');
 
@@ -148,6 +148,9 @@ app.get('/team', function(req, res) {
 
 */
 
-
+/*
 app.listen(process.env.PORT || 3000);
 console.log("Connected\n");
+*/
+
+module.exports = app;
