@@ -22,12 +22,10 @@ The application will store Users, Teams, and Players
 * each Player has basic info (height, weight, age, position) and a list of attributes
 
 
-An Example User:
+An Example Team:
 
 ```javascript
 {
-  username: "NewYorkBlackCats", //up to user if their usename includes team info
-  hash: // a password hash,
   location: // Team location,
   mascot: //Team mascot,
   color1: //Team color 1,
@@ -47,7 +45,7 @@ An Example Player:
   weight: "205",
   age: "34",
   position: "guard",
-  attributes: ["Shooter", "Hustle Player"],
+  skills: "Shooter, Hustle Player",
   createdAt: // timestamp
 }
 ```
@@ -62,7 +60,7 @@ An Example Player:
 
 ![home](documentation/home.png)
 
-/team/create - page for creating a new Team
+/create-team - page for creating a new Team
 
 ![team create](documentation/team-create.png)
 
@@ -70,11 +68,11 @@ An Example Player:
 
 ![team](documentation/team.png)
 
-/team/add - page for adding a player to the Team
+/add-player - page for adding a player to the Team
 
 ![team](documentation/team-add.png)
 
-/team/remove - page for removing a player from the Team
+/remove-player - page for removing a player from the Team
 
 ![team](documentation/team-remove.png)
 
@@ -84,13 +82,13 @@ An Example Player:
 / - home page which LINKS to /team upon succesful login for returning user or LINKS to /team-create for new user
 
 
-/team - team page which LINKS to /team-add if User decides to add new Player to Team or LINKS to /team-remove if user wishes to remove a Player from Team
+/team - team page which LINKS to /add-player if User decides to add new Player to Team or LINKS to /remove-player if user wishes to remove a Player from Team
 
 
-/team-add - page for adding a new Player to Team. LINKS to /team if user wishes to return to Team page or LINKS to /team-remove if user wishes to remove a Player from Team
+/add-player - page for adding a new Player to Team. LINKS to /team if user wishes to return to Team page or LINKS to /team-remove if user wishes to remove a Player from Team
 
 
-/team-remove - page for removing a Player from Team. LINKS to /team if user wishes to return to Team page or LINKS to /team-add if user wishes to add a new Player to Team
+/remove-player - page for removing a Player from Team. LINKS to /team if user wishes to return to Team page or LINKS to /team-add if user wishes to add a new Player to Team
 
 
 ## User Stories or Use Cases
@@ -98,7 +96,7 @@ An Example Player:
 
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
-3. as a user, I can create one Team
+3. as a user, I can create a Team
 4. as a user, I can create Players to add to the Team
 5. as a user, I can remove a Player from the Team
 6. as a user, I can see a list of all the Players on my Team with details about each Player
