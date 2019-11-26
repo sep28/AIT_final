@@ -118,6 +118,9 @@ app.post('/create-team', function(req, res) {
 	else if (req.body.mascot === "" || req.body.mascot === null) {
 		res.render("create-team", {message: "Your Team must have a mascot!"});
 	}
+	else if (req.body.coach === "" || req.body.coach === null) {
+		res.render("create-team", {message: "Your Team must have a coach!"});
+	}
 	else {
 		new Team({
 			location: req.body.location,
