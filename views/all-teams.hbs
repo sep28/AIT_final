@@ -2,20 +2,21 @@
 <h1> <strong> ALL TEAMS: </strong></h1>
 
 {{#if teamExist}}
-	
-	{{#each teams}}
+
 	<ol>
+	{{#each teams}}
+
 		<li> <strong> {{this.location}} {{this.mascot}} </strong>  (Coach: {{this.coach}})
 		{{#each roster}}
 		<ul>
 			<li> <strong> Player: </strong> {{this.name}} <strong> <br> Position: </strong> {{this.position}} <br> <strong> Skills: </strong> {{this.skills}}</li>
 		</ul>
 		{{/each}}
-	</ol>
 		<br>
 	{{/each}}
+	</ol>
 
-	
+
 {{else}}
 	<br>
 	<strong> No Teams available, add a Team using the link below </strong>
