@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const URLSlugs = require('mongoose-url-slugs');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 mongoose.set('bufferCommands', false);
 
@@ -11,7 +12,7 @@ const Player = new mongoose.Schema({
   weight: String,
   age: String,
   position: String,
-  attributes: [String],
+  skills: String
 });
 
 const Team = new mongoose.Schema({
@@ -25,11 +26,15 @@ const Team = new mongoose.Schema({
   roster: [Player]
 });
 
+const UserSchema = new mongoose.Schema({ });
 
 Team.plugin(URLSlugs('location mascot'));
+UserSchema.plugin(passportLocalMongoose);
+
 
 mongoose.model('Team', Team);
 mongoose.model('Player', Player);
+mongoose.model('User', UserSchema);
 
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
 let dbconf;

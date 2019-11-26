@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<strong>CREATE YOUR TEAM </strong>
-<form method="POST" action="/create-team">
+<h1><strong>CREATE YOUR TEAM </strong></h1>
+<h2> {{message}} </h2>
+<form method="POST" action="">
 	Team Location: <input type="text" name="location"> <br>
 	Team Mascot: <input type="text" name="mascot"> <br>
 	Team Color 1: <input type="text" name="color1"> <br>
@@ -8,4 +9,6 @@
 	Team Coach: <input type="text" name="coach"> <br>
 	<input type="submit">	
 </form>
+<br>
+<a href="/allteams"> Team Summary </a> 
 </html>

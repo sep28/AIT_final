@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <h1> <strong> ALL TEAMS: </strong></h1>
 
-<ul>
-{{#each teams}}
-	<li> <strong> {{this.location}} {{this.mascot}} </strong> </li>
-	{{#each roster}}
-	<li>{{this.name}} {{this.position}}</li>
+{{#if teamExist}}
+	<ol>
+	{{#each teams}}
+		<li> <strong> {{this.location}} {{this.mascot}} </strong>  (Coach: {{this.coach}})
+		{{#each roster}}
+		<ul>
+			<li> <strong> Player: </strong> {{this.name}} <strong> <br> Position: </strong> {{this.position}} <br> <strong> Skills: </strong> {{this.skills}}</li>
+		</ul>
+		{{/each}}
+		</ol>
+		<br>
 	{{/each}}
+	</ol>
+{{else}}
 	<br>
-{{/each}}
-</ul>
+	<strong> No Teams available, add a Team using the link below </strong>
+{{/if}}
 
-<a href="/add-player"> Add a Player </a>
+<br>
+<a href="/create-team"> Add a Team </a> 
+<a href="/add-player"> Add a Player </a> 
+<a href="/remove-team"> Remove a Team</a>
+<a href="/remove-player"> Remove a Player </a>
+
 </html>
