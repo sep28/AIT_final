@@ -16,7 +16,7 @@ NBA myGM is a web app that will allow users to keep track of players on their te
 
 The application will store Users, Teams, and Players
 
-* users can have one Team (via reference) //User and Team are synonymous
+* users can have multiple Teams
 * each Team has basic info (location, mascot, colors, coach)
 * each Team can have multiple Players (by embedding)
 * each Player has basic info (height, weight, age, position) and a list of attributes
